@@ -1,0 +1,61 @@
+﻿@model List<Disk>
+@{
+    ViewBag.Title = "View Disks";
+    string[] TableHeaders = new string[]
+    {
+        "Disk ID"
+      ,"Album Name"
+      ,"Artist"
+      ,"Release Date"
+      ,"Genre"
+      ,"Status"
+      ,"Disk Type"
+      ,"Edit"
+      ,"Delete"
+
+                            };
+}
+<h2>@ViewBag.Title.</h2>
+<a asp-controller="Disk" asp-action="Add" class="btn btn-outline-dark">Add New Disk</a>
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            @{
+                foreach (var head in TableHeaders)
+                {
+                    <th>
+                        @head
+                    </th>
+                }
+            }
+        </tr>
+    </thead>
+    @{
+        foreach (var disk in Model)
+        {
+
+        <tr>
+            <td> @disk.DiskId</td>
+            <td> @disk.DiskName</td>
+            <td> @disk.Artist</td>
+            <td> @disk.ReleaseDate</td>
+            <td> @disk.Genre.Genre1</td>
+            @{
+                if (disk.Status.IsBorrowed == true)
+                {
+                    <td>Out of Stock</td>
+                }
+                else
+                {
+                    <td>In Stock</td>
+                }
+            }
+            <td> @disk.DiskType.Type</td>
+            <td><a asp-controller="Disk" asp-action="Edit" asp-route-id="@disk.DiskId" class="btn btn-outline-dark">Edit</a></td>
+            <td><a asp-controller="Disk" asp-action="Delete" asp-route-id="@disk.DiskId" class="btn btn-outline-dark">Delete</a></td>
+        </tr>
+
+        }
+    }
+</table>

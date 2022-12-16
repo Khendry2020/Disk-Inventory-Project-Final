@@ -1,0 +1,44 @@
+﻿@model List<Borrower>
+@{
+    ViewBag.Title = "Borrower Manager";
+    string[] TableHeaders = new string[]
+{
+       "Borrower ID"
+      ,"First Name"
+      , "Last Name"
+      ,"Phone Number"
+                };
+}
+<h1>@ViewBag.Title</h1>
+<a asp-controller="Borrower" asp-action="Add" class="btn btn-outline-dark">Add New Renter</a>
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            @{
+                foreach (var head in TableHeaders)
+                {
+                    <th>
+                        @head
+                    </th>
+                }
+            }
+        </tr>
+    </thead>
+    @{
+        foreach (var Borrow in Model)
+        {
+
+
+        <tr>
+            <td> @Borrow.BorrowerId</td>
+            <td> @Borrow.FirstName</td>
+            <td> @Borrow.LastName</td>
+            <td> @Borrow.PhoneNumber</td>
+            <td><a asp-controller="Borrower" asp-action="Edit" asp-route-id="@Borrow.BorrowerId" class="btn btn-outline-dark">Edit</a></td>
+            <td><a asp-controller="Borrower" asp-action="Delete" asp-route-id="@Borrow.BorrowerId" class="btn btn-outline-dark">Delete</a></td>
+        </tr>
+
+        }
+    }
+</table>

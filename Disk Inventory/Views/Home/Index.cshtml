@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Rental Manager</h1>
+    <p>Rental management made easy.</p>
+    <div class="list-group-item">
+        <a asp-controller="Borrower" asp-action="Index" class="btn btn-outline-dark">Manage Borrowers</a>
+        <a asp-controller="Disk" asp-action="Index" class="btn btn-outline-dark">Manage Disks</a>
+        <a asp-controller="DiskBorrower" asp-action="Index" class="btn btn-outline-dark">Checkout</a>
+    </div>
+</div>
